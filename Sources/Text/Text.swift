@@ -186,6 +186,16 @@ extension Text
     }
 }
 
+// Trim
+extension Text
+{
+    public func trim() -> Text
+    {
+        let result = self.string.trimmingCharacters(in: .whitespacesAndNewlines)
+        return Text(fromUTF8String: result)
+    }
+}
+
 public enum TextError: Error
 {
     case badIndex(Int)
