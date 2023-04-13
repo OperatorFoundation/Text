@@ -196,6 +196,32 @@ extension Text
     }
 }
 
+// Join
+extension Text
+{
+    public func join(parts: [Text]) -> Text
+    {
+        let strings = parts.map { $0.string }
+        let result = strings.joined(separator: self.string)
+        return Text(fromUTF8String: result)
+    }
+}
+
+// Prepend, append
+extension Text
+{
+    public func prepend(prefix: Text) -> Text
+    {
+        return prefix.append(suffix: self)
+    }
+
+    public func append(suffix: Text) -> Text
+    {
+        let result = self.string.appending(suffix.string)
+        return Text(fromUTF8String: result)
+    }
+}
+
 public enum TextError: Error
 {
     case badIndex(Int)

@@ -266,6 +266,44 @@ extension MutableText
     }
 }
 
+// Join
+extension MutableText
+{
+    public func join(parts: [Text]) -> Text
+    {
+        return self.text.join(parts: parts)
+    }
+
+    public func becomeJoined(parts: [Text])
+    {
+        self.text = self.join(parts: parts)
+    }
+}
+
+// Prepend, append
+extension MutableText
+{
+    public func prepend(prefix: Text) -> Text
+    {
+        return self.text.prepend(prefix: prefix)
+    }
+
+    public func append(suffix: Text) -> Text
+    {
+        return self.text.append(suffix: suffix)
+    }
+
+    public func becomePrepended(prefix: Text)
+    {
+        self.text = self.text.prepend(prefix: prefix)
+    }
+
+    public func becomeAppended(suffix: Text)
+    {
+        self.text = self.text.append(suffix: suffix)
+    }
+}
+
 public enum MutableTextError: Error
 {
     case badIndex(Int)
