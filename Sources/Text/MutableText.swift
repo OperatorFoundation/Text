@@ -110,6 +110,15 @@ extension MutableText
     }
 }
 
+// Become
+extension MutableText
+{
+    public func become(text: Text)
+    {
+        self.text = text
+    }
+}
+
 // Hex conversion
 extension MutableText
 {
