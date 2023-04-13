@@ -67,7 +67,7 @@ extension Text: MaybeDatable
 // UTF8 Data conversion
 extension Text
 {
-    public init?(fromUTF8Data: Data)
+    public init(fromUTF8Data: Data)
     {
         self.init(fromUTF8String: fromUTF8Data.string)
     }
@@ -81,12 +81,12 @@ extension Text
 // Hex conversion
 extension Text
 {
-    public init?(fromHex: Text)
+    public init(fromHex: Text) throws
     {
         let hexString = fromHex.string
         guard let data = Data(hex: hexString) else
         {
-            return nil
+            throw TextError.conversionFailed
         }
 
         let string = data.string
@@ -103,12 +103,12 @@ extension Text
 // Base64 conversion
 extension Text
 {
-    public init?(fromBase64: Text)
+    public init(fromBase64: Text) throws
     {
         let hexString = fromBase64.string
         guard let data = Data(base64: hexString) else
         {
-            return nil
+            throw TextError.conversionFailed
         }
 
         let string = data.string
@@ -165,7 +165,7 @@ extension Text
         }
     }
 
-    public func split(on value: Text) throws -> (Text, Text)?
+    public func split(on value: Text) throws -> (Text, Text)
     {
         let index = try self.indexOf(value)
         return try self.split(at: index)
@@ -200,4 +200,5 @@ public enum TextError: Error
 {
     case badIndex(Int)
     case notFound
+    case conversionFailed
 }
