@@ -153,7 +153,7 @@ extension Text
 // Split
 extension Text
 {
-    public func split(separator: Text) -> [Text]
+    public func split(_ separator: Text) -> [Text]
     {
         let substrings = self.string.components(separatedBy: separator.string)
         return substrings.map
@@ -165,13 +165,13 @@ extension Text
         }
     }
 
-    public func split(on value: Text) throws -> (Text, Text)
+    public func splitOn(_ value: Text) throws -> (Text, Text)
     {
         let index = try self.indexOf(value)
-        return try self.split(at: index)
+        return try self.splitAt(index)
     }
 
-    public func split(at index: Int) throws -> (Text, Text)
+    public func splitAt(_ index: Int) throws -> (Text, Text)
     {
         let splitIndex = self.string.index(self.string.startIndex, offsetBy: index)
         guard splitIndex >= self.string.startIndex, splitIndex < self.string.endIndex else
@@ -199,7 +199,7 @@ extension Text
 // Join
 extension Text
 {
-    public func join(parts: [Text]) -> Text
+    public func join(_ parts: [Text]) -> Text
     {
         let strings = parts.map { $0.string }
         let result = strings.joined(separator: self.string)
@@ -210,12 +210,12 @@ extension Text
 // Prepend, append
 extension Text
 {
-    public func prepend(prefix: Text) -> Text
+    public func prepend(_ prefix: Text) -> Text
     {
-        return prefix.append(suffix: self)
+        return prefix.append(self)
     }
 
-    public func append(suffix: Text) -> Text
+    public func append(_ suffix: Text) -> Text
     {
         let result = self.string.appending(suffix.string)
         return Text(fromUTF8String: result)

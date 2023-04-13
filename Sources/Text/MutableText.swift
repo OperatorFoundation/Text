@@ -200,24 +200,24 @@ extension MutableText
 // Split
 extension MutableText
 {
-    public func split(separator: Text) -> [Text]
+    public func split(_ separator: Text) -> [Text]
     {
-        return self.text.split(separator: separator)
+        return self.text.split(separator)
     }
 
-    public func split(on value: Text) throws -> (Text, Text)
+    public func splitOn(_ value: Text) throws -> (Text, Text)
     {
-        return try self.text.split(on: value)
+        return try self.text.splitOn(value)
     }
 
-    public func split(at index: Int) throws -> (Text, Text)
+    public func splitAt(_ index: Int) throws -> (Text, Text)
     {
-        return try self.text.split(at: index)
+        return try self.text.splitAt(index)
     }
 
-    public func becomeSplit(separator: Text, index: Int) throws
+    public func becomeSplit(_ separator: Text, _ index: Int) throws
     {
-        let parts = self.split(separator: separator)
+        let parts = self.split(separator)
 
         guard index > 0, index < parts.count else
         {
@@ -227,27 +227,27 @@ extension MutableText
         self.text = parts[index]
     }
 
-    public func becomeSplitHead(on value: Text) throws
+    public func becomeSplitOnHead(_ value: Text) throws
     {
-        let (head, _) = try self.split(on: value)
+        let (head, _) = try self.splitOn(value)
         self.text = head
     }
 
-    public func becomeSplitTail(on value: Text) throws
+    public func becomeSplitOnTail(_ value: Text) throws
     {
-        let (_, tail) = try self.split(on: value)
+        let (_, tail) = try self.splitOn(value)
         self.text = tail
     }
 
-    public func becomeSplitHead(at index: Int) throws
+    public func becomeSplitAtHead(_ index: Int) throws
     {
-        let (head, _) = try self.split(at: index)
+        let (head, _) = try self.splitAt(index)
         self.text = head
     }
 
-    public func becomeSplitTail(at index: Int) throws
+    public func becomeSplitAtTail(_ index: Int) throws
     {
-        let (_, tail) = try self.split(at: index)
+        let (_, tail) = try self.splitAt(index)
         self.text = tail
     }
 }
@@ -269,38 +269,38 @@ extension MutableText
 // Join
 extension MutableText
 {
-    public func join(parts: [Text]) -> Text
+    public func join(_ parts: [Text]) -> Text
     {
-        return self.text.join(parts: parts)
+        return self.text.join(parts)
     }
 
-    public func becomeJoined(parts: [Text])
+    public func becomeJoined(_ parts: [Text])
     {
-        self.text = self.join(parts: parts)
+        self.text = self.join(parts)
     }
 }
 
 // Prepend, append
 extension MutableText
 {
-    public func prepend(prefix: Text) -> Text
+    public func prepend(_ prefix: Text) -> Text
     {
-        return self.text.prepend(prefix: prefix)
+        return self.text.prepend(prefix)
     }
 
-    public func append(suffix: Text) -> Text
+    public func append(_ suffix: Text) -> Text
     {
-        return self.text.append(suffix: suffix)
+        return self.text.append(suffix)
     }
 
     public func becomePrepended(prefix: Text)
     {
-        self.text = self.text.prepend(prefix: prefix)
+        self.text = self.text.prepend(prefix)
     }
 
     public func becomeAppended(suffix: Text)
     {
-        self.text = self.text.append(suffix: suffix)
+        self.text = self.text.append(suffix)
     }
 }
 
