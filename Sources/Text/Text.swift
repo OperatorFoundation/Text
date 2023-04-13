@@ -10,7 +10,7 @@ import Foundation
 import Datable
 import SwiftHexTools
 
-public struct Text: Equatable, Hashable, Codable
+public struct Text: TextProtocol
 {
     public let string: String
 

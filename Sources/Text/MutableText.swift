@@ -10,7 +10,7 @@ import Foundation
 import Datable
 import SwiftHexTools
 
-public final class MutableText: Codable
+public final class MutableText: TextProtocol
 {
     public var text: Text
 
