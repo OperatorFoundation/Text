@@ -222,6 +222,15 @@ extension Text
     }
 }
 
+// Contains
+extension Text
+{
+    public func contains(_ subtext: Text) -> Bool
+    {
+        return self.string.contains(subtext.string)
+    }
+}
+
 public enum TextError: Error
 {
     case badIndex(Int)

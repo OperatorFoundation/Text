@@ -9,7 +9,9 @@ import Foundation
 
 public class MutableTextFactory
 {
-    public func empty() -> MutableText
+    public typealias Product = MutableText
+
+    public func empty() -> Product
     {
         return MutableText()
     }

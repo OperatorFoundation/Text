@@ -313,6 +313,15 @@ extension MutableText
     }
 }
 
+// Contains
+extension MutableText
+{
+    public func contains(_ subtext: Text) -> Bool
+    {
+        return self.text.contains(subtext)
+    }
+}
+
 public enum MutableTextError: Error
 {
     case badIndex(Int)
