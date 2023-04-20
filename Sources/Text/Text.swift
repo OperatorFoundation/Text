@@ -180,19 +180,21 @@ extension Text
     public func splitOn(_ value: Text) throws -> (Text, Text)
     {
         let index = try self.indexOf(value)
-        return try self.splitAt(index + 1)
+        return try self.splitAt(index)
     }
 
     public func splitAt(_ index: Int) throws -> (Text, Text)
     {
-        let splitIndex = self.string.index(self.string.startIndex, offsetBy: index)
-        guard splitIndex >= self.string.startIndex, splitIndex < self.string.endIndex else
+        let headIndex = self.string.index(self.string.startIndex, offsetBy: index)
+        guard headIndex >= self.string.startIndex, headIndex < self.string.endIndex else
         {
             throw TextError.badIndex(index)
         }
 
-        let head = String(self.string[self.string.startIndex..<splitIndex])
-        let tail = String(self.string[splitIndex..<self.string.endIndex])
+        let tailIndex = self.string.index(after: headIndex)
+
+        let head = String(self.string[self.string.startIndex..<headIndex])
+        let tail = String(self.string[tailIndex..<self.string.endIndex])
 
         return (Text(fromUTF8String: head), Text(fromUTF8String: tail))
     }
