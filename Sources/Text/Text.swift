@@ -41,6 +41,26 @@ extension Text: ExpressibleByStringLiteral
     }
 }
 
+// Codable to/from JSON
+extension Text
+{
+    public init(toJSONFromCodable codable: any Codable) throws
+    {
+        let encoder = JSONEncoder()
+
+        let data = try encoder.encode(codable)
+        self.init(fromUTF8Data: data)
+    }
+
+    public func toCodableFromJSON<T>() throws -> T where T: Codable
+    {
+        let data = self.toUTF8Data()
+
+        let decoder = JSONDecoder()
+        return try decoder.decode(T.self, from: data)
+    }
+}
+
 // Comparable
 extension Text: Comparable
 {

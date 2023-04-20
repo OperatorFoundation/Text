@@ -50,6 +50,11 @@ public class MutableTextFactory
     {
         return try MutableText(fromBase64: value)
     }
+
+    public func toJSONFromCodable(_ codable: any Codable) throws -> MutableText
+    {
+        return try MutableText(toJSONFromCodable: codable)
+    }
 }
 
 public enum MutableTextFactoryError: Error

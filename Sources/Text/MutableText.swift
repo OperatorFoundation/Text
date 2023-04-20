@@ -351,6 +351,21 @@ extension MutableText
     }
 }
 
+// Codable to/from JSON
+extension MutableText
+{
+    public convenience init(toJSONFromCodable codable: any Codable) throws
+    {
+        let text = try Text(toJSONFromCodable: codable)
+        self.init(fromText: text)
+    }
+
+    public func toCodableFromJSON<T>() throws -> T where T: Codable
+    {
+        return try self.text.toCodableFromJSON()
+    }
+}
+
 public enum MutableTextError: Error
 {
     case badIndex(Int)

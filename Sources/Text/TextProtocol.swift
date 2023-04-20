@@ -35,4 +35,5 @@ public protocol TextProtocol:
     func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
     func count() -> Int
     func isEmpty() -> Bool
+    func toCodableFromJSON<T>() throws -> T where T: Codable
 }
