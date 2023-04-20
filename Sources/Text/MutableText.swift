@@ -393,6 +393,20 @@ extension MutableText
     }
 }
 
+// DropFirst
+extension MutableText
+{
+    public func dropFirst() throws -> Text
+    {
+        return try self.text.dropFirst()
+    }
+
+    public func becomeDropFirst() throws
+    {
+        self.text = try self.text.dropFirst()
+    }
+}
+
 public enum MutableTextError: Error
 {
     case badIndex(Int)

@@ -39,4 +39,5 @@ public protocol TextProtocol:
     func count() -> Int
     func isEmpty() -> Bool
     func toCodableFromJSON<T>() throws -> T where T: Codable
+    func dropFirst() throws -> Text
 }
