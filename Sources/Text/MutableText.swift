@@ -334,12 +334,12 @@ extension MutableText
         return self.text.append(suffix)
     }
 
-    public func becomePrepended(prefix: Text)
+    public func becomePrepended(_ prefix: Text)
     {
         self.text = self.text.prepend(prefix)
     }
 
-    public func becomeAppended(suffix: Text)
+    public func becomeAppended(_ suffix: Text)
     {
         self.text = self.text.append(suffix)
     }
