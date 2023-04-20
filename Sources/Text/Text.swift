@@ -180,7 +180,7 @@ extension Text
     public func splitOn(_ value: Text) throws -> (Text, Text)
     {
         let index = try self.indexOf(value)
-        return try self.splitAt(index)
+        return try self.splitAt(index + 1)
     }
 
     public func splitAt(_ index: Int) throws -> (Text, Text)
