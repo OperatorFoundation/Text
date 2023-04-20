@@ -134,7 +134,7 @@ extension Text
         return Text(fromUTF8String: resultString)
     }
 
-    public func substringRegex(_ regex: Regex<StringLiteralType>) throws -> Text
+    public func substringRegex(_ regex: Regex<AnyRegexOutput>) throws -> Text
     {
         let ranges = self.string.ranges(of: regex)
         guard ranges.count > 0 else
@@ -242,7 +242,7 @@ extension Text
         return self.string.contains(subtext.string)
     }
 
-    public func containsRegex(_ regex: Regex<StringLiteralType>) -> Bool
+    public func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
     {
         let ranges = self.string.ranges(of: regex)
         return ranges.count > 0
