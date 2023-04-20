@@ -191,9 +191,19 @@ extension MutableText
         return try self.text.substring(startInclusive, endExclusive)
     }
 
+    public func substringRegex(_ regex: Regex<StringLiteralType>) throws -> Text
+    {
+        return try self.text.substringRegex(regex)
+    }
+
     public func becomeSubstring(_ startInclusive: Int, _ endExclusive: Int) throws
     {
         self.text = try self.text.substring(startInclusive, endExclusive)
+    }
+
+    public func becomeSubstringRegex(_ regex: Regex<StringLiteralType>) throws
+    {
+        self.text = try self.text.substringRegex(regex)
     }
 }
 
@@ -316,9 +326,14 @@ extension MutableText
 // Contains
 extension MutableText
 {
-    public func contains(_ subtext: Text) -> Bool
+    public func containsSubstring(_ subtext: Text) -> Bool
     {
-        return self.text.contains(subtext)
+        return self.text.containsSubstring(subtext)
+    }
+
+    public func containsRegex(_ regex: Regex<StringLiteralType>) -> Bool
+    {
+        return self.text.containsRegex(regex)
     }
 }
 

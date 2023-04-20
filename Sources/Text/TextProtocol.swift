@@ -22,6 +22,7 @@ public protocol TextProtocol:
     func toHex() -> Text
     func toBase64() -> Text
     func substring(_ startInclusive: Int, _ endExclusive: Int) throws -> Text
+    func substringRegex(_ regex: Regex<StringLiteralType>) throws -> Text
     func indexOf(_ text: Text) throws -> Int
     func split(_ separator: Text) -> [Text]
     func splitOn(_ value: Text) throws -> (Text, Text)
@@ -30,4 +31,6 @@ public protocol TextProtocol:
     func join(_ parts: [Text]) -> Text
     func prepend(_ prefix: Text) -> Text
     func append(_ suffix: Text) -> Text
+    func containsSubstring(_ subtext: Text) -> Bool
+    func containsRegex(_ regex: Regex<StringLiteralType>) -> Bool
 }

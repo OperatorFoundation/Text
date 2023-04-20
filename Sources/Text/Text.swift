@@ -133,6 +133,18 @@ extension Text
         let resultString = String(substring)
         return Text(fromUTF8String: resultString)
     }
+
+    public func substringRegex(_ regex: Regex<StringLiteralType>) throws -> Text
+    {
+        let ranges = self.string.ranges(of: regex)
+        guard ranges.count > 0 else
+        {
+            throw TextError.notFound
+        }
+
+        let substring = String(self.string[ranges[0]])
+        return Text(fromUTF8String: substring)
+    }
 }
 
 // IndexOf
@@ -225,9 +237,15 @@ extension Text
 // Contains
 extension Text
 {
-    public func contains(_ subtext: Text) -> Bool
+    public func containsSubstring(_ subtext: Text) -> Bool
     {
         return self.string.contains(subtext.string)
+    }
+
+    public func containsRegex(_ regex: Regex<StringLiteralType>) -> Bool
+    {
+        let ranges = self.string.ranges(of: regex)
+        return ranges.count > 0
     }
 }
 
