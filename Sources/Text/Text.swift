@@ -180,6 +180,20 @@ extension Text
         let index = range.lowerBound
         return self.string.distance(from: self.string.startIndex, to: index)
     }
+
+    public func lastIndexOf(_ text: Text) throws -> Int
+    {
+        let ranges = self.string.ranges(of: text.string)
+
+        guard let range = ranges.last else
+        {
+            throw TextError.notFound
+        }
+
+
+        let index = range.lowerBound
+        return self.string.distance(from: self.string.startIndex, to: index)
+    }
 }
 
 // Split
@@ -200,6 +214,12 @@ extension Text
     public func splitOn(_ value: Text) throws -> (Text, Text)
     {
         let index = try self.indexOf(value)
+        return try self.splitAt(index)
+    }
+
+    public func splitOnLast(_ value: Text) throws -> (Text, Text)
+    {
+        let index = try self.lastIndexOf(value)
         return try self.splitAt(index)
     }
 

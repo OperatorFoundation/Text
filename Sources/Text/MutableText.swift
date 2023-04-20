@@ -214,6 +214,11 @@ extension MutableText
     {
         return try self.text.indexOf(text)
     }
+
+    public func lastIndexOf(_ text: Text) throws -> Int
+    {
+        return try self.text.lastIndexOf(text)
+    }
 }
 
 // Split
@@ -227,6 +232,11 @@ extension MutableText
     public func splitOn(_ value: Text) throws -> (Text, Text)
     {
         return try self.text.splitOn(value)
+    }
+
+    public func splitOnLast(_ value: Text) throws -> (Text, Text)
+    {
+        return try self.text.splitOnLast(value)
     }
 
     public func splitAt(_ index: Int) throws -> (Text, Text)
@@ -255,6 +265,18 @@ extension MutableText
     public func becomeSplitOnTail(_ value: Text) throws
     {
         let (_, tail) = try self.splitOn(value)
+        self.text = tail
+    }
+
+    public func becomeSplitOnLastHead(_ value: Text) throws
+    {
+        let (head, _) = try self.splitOnLast(value)
+        self.text = head
+    }
+
+    public func becomeSplitOnLastTail(_ value: Text) throws
+    {
+        let (_, tail) = try self.splitOnLast(value)
         self.text = tail
     }
 
