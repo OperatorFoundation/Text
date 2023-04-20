@@ -337,6 +337,20 @@ extension MutableText
     }
 }
 
+// Count, IsEmpty
+extension MutableText
+{
+    public func count() -> Int
+    {
+        return self.text.count()
+    }
+
+    public func isEmpty() -> Bool
+    {
+        return self.text.isEmpty()
+    }
+}
+
 public enum MutableTextError: Error
 {
     case badIndex(Int)

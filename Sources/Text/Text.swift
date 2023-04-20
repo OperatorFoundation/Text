@@ -249,6 +249,20 @@ extension Text
     }
 }
 
+// Count, IsEmpty
+extension Text
+{
+    public func count() -> Int
+    {
+        return self.string.count
+    }
+
+    public func isEmpty() -> Bool
+    {
+        return self.string.isEmpty
+    }
+}
+
 public enum TextError: Error
 {
     case badIndex(Int)
