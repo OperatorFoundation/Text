@@ -276,12 +276,25 @@ extension Text
     }
 }
 
-// Contains
+// Contains, StartsWith
 extension Text
 {
     public func containsSubstring(_ subtext: Text) -> Bool
     {
         return self.string.contains(subtext.string)
+    }
+
+    public func startsWith(_ subtext: Text) -> Bool
+    {
+        do
+        {
+            let prefix = try self.substring(0, subtext.count())
+            return prefix == subtext
+        }
+        catch
+        {
+            return false
+        }
     }
 
     public func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
@@ -302,6 +315,15 @@ extension Text
     public func isEmpty() -> Bool
     {
         return self.string.isEmpty
+    }
+}
+
+// DropFirst
+extension Text
+{
+    public func dropFirst() throws -> Text
+    {
+        return try self.substring(1, self.count())
     }
 }
 

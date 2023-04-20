@@ -353,6 +353,11 @@ extension MutableText
         return self.text.containsSubstring(subtext)
     }
 
+    public func startsWith(_ subtext: Text) -> Bool
+    {
+        return self.text.startsWith(subtext)
+    }
+
     public func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
     {
         return self.text.containsRegex(regex)

@@ -34,6 +34,7 @@ public protocol TextProtocol:
     func prepend(_ prefix: Text) -> Text
     func append(_ suffix: Text) -> Text
     func containsSubstring(_ subtext: Text) -> Bool
+    func startsWith(_ subtext: Text) -> Bool
     func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
     func count() -> Int
     func isEmpty() -> Bool
