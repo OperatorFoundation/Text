@@ -327,6 +327,15 @@ extension Text
     }
 }
 
+// Uppercase
+extension Text
+{
+    public func uppercase() -> Text
+    {
+        return Text(fromUTF8String: self.string.uppercased())
+    }
+}
+
 public enum TextError: Error
 {
     case badIndex(Int)

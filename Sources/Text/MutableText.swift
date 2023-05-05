@@ -407,6 +407,20 @@ extension MutableText
     }
 }
 
+// Uppercase
+extension MutableText
+{
+    public func uppercase() -> Text
+    {
+        return self.text.uppercase()
+    }
+
+    public func becomeUppercase()
+    {
+        self.text = self.text.uppercase()
+    }
+}
+
 public enum MutableTextError: Error
 {
     case badIndex(Int)
