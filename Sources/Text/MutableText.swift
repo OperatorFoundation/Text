@@ -239,9 +239,9 @@ extension MutableText
         return try self.text.splitOnLast(value)
     }
 
-    public func splitAt(_ index: Int) throws -> (Text, Text)
+    public func splitAt(_ index: Int, _ length: Int = 0) throws -> (Text, Text)
     {
-        return try self.text.splitAt(index)
+        return try self.text.splitAt(index, length)
     }
 
     public func becomeSplit(_ separator: Text, _ index: Int) throws
@@ -280,15 +280,15 @@ extension MutableText
         self.text = tail
     }
 
-    public func becomeSplitAtHead(_ index: Int) throws
+    public func becomeSplitAtHead(_ index: Int, _ length: Int = 0) throws
     {
-        let (head, _) = try self.splitAt(index)
+        let (head, _) = try self.splitAt(index, length)
         self.text = head
     }
 
-    public func becomeSplitAtTail(_ index: Int) throws
+    public func becomeSplitAtTail(_ index: Int, _ length: Int = 0) throws
     {
-        let (_, tail) = try self.splitAt(index)
+        let (_, tail) = try self.splitAt(index, length)
         self.text = tail
     }
 }

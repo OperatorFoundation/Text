@@ -214,16 +214,16 @@ extension Text
     public func splitOn(_ value: Text) throws -> (Text, Text)
     {
         let index = try self.indexOf(value)
-        return try self.splitAt(index + value.count())
+        return try self.splitAt(index, value.count())
     }
 
     public func splitOnLast(_ value: Text) throws -> (Text, Text)
     {
         let index = try self.lastIndexOf(value)
-        return try self.splitAt(index + value.count())
+        return try self.splitAt(index, value.count())
     }
 
-    public func splitAt(_ index: Int) throws -> (Text, Text)
+    public func splitAt(_ index: Int, _ length: Int = 0) throws -> (Text, Text)
     {
         let headIndex = self.string.index(self.string.startIndex, offsetBy: index)
         guard headIndex >= self.string.startIndex, headIndex < self.string.endIndex else
@@ -231,7 +231,8 @@ extension Text
             throw TextError.badIndex(index)
         }
 
-        let tailIndex = self.string.index(after: headIndex)
+        let afterHeadIndex = self.string.index(after: headIndex)
+        let tailIndex = self.string.index(afterHeadIndex, offsetBy: length)
 
         let head = String(self.string[self.string.startIndex..<headIndex])
         let tail = String(self.string[tailIndex..<self.string.endIndex])

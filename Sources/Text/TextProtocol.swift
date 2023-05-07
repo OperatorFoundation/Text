@@ -28,7 +28,7 @@ public protocol TextProtocol:
     func split(_ separator: Text) -> [Text]
     func splitOn(_ value: Text) throws -> (Text, Text)
     func splitOnLast(_ value: Text) throws -> (Text, Text)
-    func splitAt(_ index: Int) throws -> (Text, Text)
+    func splitAt(_ index: Int, _ length: Int) throws -> (Text, Text)
     func trim() -> Text
     func join(_ parts: [Text]) -> Text
     func prepend(_ prefix: Text) -> Text
