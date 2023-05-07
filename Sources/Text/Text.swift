@@ -232,7 +232,7 @@ extension Text
         }
 
         let afterHeadIndex = self.string.index(after: headIndex)
-        let tailIndex = self.string.index(afterHeadIndex, offsetBy: length)
+        let tailIndex = self.string.index(afterHeadIndex, offsetBy: length - 1)
 
         let head = String(self.string[self.string.startIndex..<headIndex])
         let tail = String(self.string[tailIndex..<self.string.endIndex])
