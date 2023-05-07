@@ -214,13 +214,13 @@ extension Text
     public func splitOn(_ value: Text) throws -> (Text, Text)
     {
         let index = try self.indexOf(value)
-        return try self.splitAt(index)
+        return try self.splitAt(index + value.count())
     }
 
     public func splitOnLast(_ value: Text) throws -> (Text, Text)
     {
         let index = try self.lastIndexOf(value)
-        return try self.splitAt(index)
+        return try self.splitAt(index + value.count())
     }
 
     public func splitAt(_ index: Int) throws -> (Text, Text)
