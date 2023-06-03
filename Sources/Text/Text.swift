@@ -319,12 +319,24 @@ extension Text
     }
 }
 
-// DropFirst
+// Drop
 extension Text
 {
     public func dropFirst() throws -> Text
     {
         return try self.substring(1, self.count())
+    }
+
+    public func dropPrefix(_ text: Text) throws -> Text
+    {
+        guard self.startsWith(text) else
+        {
+            return self
+        }
+
+        let index = text.count()
+        let (_, tail) = try self.splitAt(index)
+        return tail
     }
 }
 

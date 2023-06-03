@@ -393,7 +393,7 @@ extension MutableText
     }
 }
 
-// DropFirst
+// Drop
 extension MutableText
 {
     public func dropFirst() throws -> Text
@@ -404,6 +404,16 @@ extension MutableText
     public func becomeDropFirst() throws
     {
         self.text = try self.text.dropFirst()
+    }
+
+    public func dropPrefix(_ text: Text) throws -> Text
+    {
+        return try self.text.dropPrefix(text)
+    }
+
+    public func becomeDropPrefix(_ text: Text) throws
+    {
+        self.text = try self.text.dropPrefix(text)
     }
 }
 
