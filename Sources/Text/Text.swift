@@ -287,6 +287,11 @@ extension Text
 
     public func startsWith(_ subtext: Text) -> Bool
     {
+        guard subtext.count() <= self.count() else
+        {
+            return false
+        }
+
         do
         {
             let prefix = try self.substring(0, subtext.count())
