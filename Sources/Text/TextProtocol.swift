@@ -42,4 +42,5 @@ public protocol TextProtocol:
     func dropFirst() throws -> Text
     func dropPrefix(_ text: Text) throws -> Text
     func uppercase() -> Text
+    func uppercaseFirstLetter() throws -> Text
 }

@@ -352,6 +352,18 @@ extension Text
     {
         return Text(fromUTF8String: self.string.uppercased())
     }
+
+    public func uppercaseFirstLetter() throws -> Text
+    {
+        guard self.count() >= 1 else
+        {
+            throw TextError.textTooShort
+        }
+
+        let (head, tail) = try self.splitAt(0)
+        let capHead = head.uppercase()
+        return capHead.append(tail)
+    }
 }
 
 public enum TextError: Error
@@ -359,4 +371,5 @@ public enum TextError: Error
     case badIndex(Int)
     case notFound
     case conversionFailed
+    case textTooShort
 }

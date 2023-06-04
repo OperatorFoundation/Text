@@ -429,6 +429,16 @@ extension MutableText
     {
         self.text = self.text.uppercase()
     }
+
+    public func uppercaseFirstLetter() throws -> Text
+    {
+        return try self.text.uppercaseFirstLetter()
+    }
+
+    public func becomeUppercaseFirstLetter() throws
+    {
+        self.text = try self.text.uppercaseFirstLetter()
+    }
 }
 
 public enum MutableTextError: Error
