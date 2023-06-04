@@ -360,7 +360,8 @@ extension Text
             throw TextError.textTooShort
         }
 
-        let (head, tail) = try self.splitAt(0)
+        let (head, _) = try self.splitAt(1)
+        let tail = try self.dropFirst()
         let capHead = head.uppercase()
         return capHead.append(tail)
     }
