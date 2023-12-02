@@ -17,6 +17,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/OperatorFoundation/Datable", branch: "main"),
+        .package(url: "https://github.com/blanu/Starfish", branch: "main"),
         .package(url: "https://github.com/OperatorFoundation/SwiftHexTools", branch: "main"),
     ],
     targets: [
@@ -26,6 +27,7 @@ let package = Package(
             name: "Text",
             dependencies: [
                 "Datable",
+                "Starfish",
                 "SwiftHexTools",
             ]
         ),

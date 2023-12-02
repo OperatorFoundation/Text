@@ -7,11 +7,26 @@
 
 import Foundation
 
+import Starfish
+
+prefix operator ⟝
+prefix operator ⟞
+
 infix operator ∩
 
 public func ℤ(_ scalar: UnicodeScalar) -> Bool
 {
     return Text.numeric(scalar)
+}
+
+public prefix func ⟝(_ text: Text) throws -> Text
+{
+    return try text.first()
+}
+
+public prefix func ⟞(_ text: Text) throws -> Text
+{
+    return try text.last()
 }
 
 public func ∩(_ x: Text, _ keep: (UnicodeScalar) -> Bool) -> Text
