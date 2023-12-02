@@ -11,6 +11,7 @@ import Starfish
 
 prefix operator ⟝
 prefix operator ⟞
+postfix operator ≡
 
 infix operator ∩
 infix operator ∾
@@ -38,4 +39,9 @@ public func ∩(_ x: Text, _ keep: (UnicodeScalar) -> Bool) -> Text
 public func ∾(_ x: Text, _ y: Text) -> Text
 {
     return x.append(y)
+}
+
+public postfix func ≡(_ x: Text) -> [Text]
+{
+    return x.lines()
 }
