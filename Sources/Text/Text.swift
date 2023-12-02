@@ -41,6 +41,14 @@ extension Text: ExpressibleByStringLiteral
     }
 }
 
+extension Text
+{
+    static public func numeric(_ scalar: UnicodeScalar) -> Bool
+    {
+        return (scalar.value >= 0x0030) && (scalar.value <= 0x0039) // '0' to '9'
+    }
+}
+
 // Codable to/from JSON
 extension Text
 {
@@ -364,6 +372,105 @@ extension Text
         let tail = try self.dropFirst()
         let capHead = head.uppercase()
         return capHead.append(tail)
+    }
+}
+
+// Lines
+extension Text
+{
+    public func lines(separator: Text? = nil) -> [Text]
+    {
+        if let separator
+        {
+            return self.split(separator).map
+            {
+                text in
+
+                return text.trim()
+            }
+        }
+
+        if self.string.contains("\r\n")
+        {
+            return self.lines(separator: "\r\n").map
+            {
+                text in
+
+                return text.trim()
+            }
+        }
+
+        if self.string.contains("\n\r")
+        {
+            return self.lines(separator: "\n\r").map
+            {
+                text in
+
+                return text.trim()
+            }
+        }
+
+        if self.string.contains("\r")
+        {
+            return self.lines(separator: "\r").map
+            {
+                text in
+
+                return text.trim()
+            }
+        }
+
+        if self.string.contains("\n")
+        {
+            return self.lines(separator: "\n").map
+            {
+                text in
+
+                return text.trim()
+            }
+        }
+
+        return [self]
+    }
+}
+
+// Filter
+extension Text
+{
+    public init(unicodeScalarsView: String.UnicodeScalarView)
+    {
+        let string = String(unicodeScalarsView)
+        self.init(fromUTF8String: string)
+    }
+
+    public func filter(keep: (Unicode.Scalar) -> Bool) -> Text
+    {
+        let scalars = self.string.unicodeScalars.filter(keep)
+        return Text(unicodeScalarsView: scalars)
+    }
+}
+
+// First, Last
+extension Text
+{
+    public func first() throws -> Text
+    {
+        guard self.string.count > 0 else
+        {
+            throw TextError.textTooShort
+        }
+
+        return try self.substring(0, 1)
+    }
+
+    public func last() throws -> Text
+    {
+        guard self.string.count > 0 else
+        {
+            throw TextError.textTooShort
+        }
+
+        return try self.substring(self.string.count - 1, self.string.count)
     }
 }
 

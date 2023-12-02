@@ -3,7 +3,12 @@ import XCTest
 
 final class TextTests: XCTestCase
 {
-    func testExample() throws
+    func testFilterNumericWithOperators() throws
     {
+        let input: Text = "a1b2c3"
+        let correct: Text = "123"
+
+        let result = input ∩ ℤ
+        XCTAssertEqual(result, correct)
     }
 }

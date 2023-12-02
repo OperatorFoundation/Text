@@ -441,6 +441,53 @@ extension MutableText
     }
 }
 
+// Lines
+extension MutableText
+{
+    public func lines(separator: Text? = nil) -> [Text]
+    {
+        return self.text.lines(separator: separator)
+    }
+}
+
+// Filter
+extension MutableText
+{
+    public convenience init(unicodeScalarsView: String.UnicodeScalarView)
+    {
+        self.init(fromText: Text(unicodeScalarsView: unicodeScalarsView))
+    }
+
+    public func filter(keep: (Unicode.Scalar) -> Bool) -> Text
+    {
+        return self.text.filter(keep: keep)
+    }
+}
+
+// First, Last
+extension MutableText
+{
+    public func first() throws -> Text
+    {
+        return try self.text.first()
+    }
+
+    public func becomFirst() throws
+    {
+        self.text = try self.text.first()
+    }
+
+    public func last() throws -> Text
+    {
+        return try self.text.last()
+    }
+
+    public func becomeLast() throws
+    {
+        self.text = try self.text.first()
+    }
+}
+
 public enum MutableTextError: Error
 {
     case badIndex(Int)
