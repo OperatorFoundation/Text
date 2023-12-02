@@ -13,6 +13,7 @@ prefix operator ⟝
 prefix operator ⟞
 
 infix operator ∩
+infix operator ∾
 
 public func ℤ(_ scalar: UnicodeScalar) -> Bool
 {
@@ -32,4 +33,9 @@ public prefix func ⟞(_ text: Text) throws -> Text
 public func ∩(_ x: Text, _ keep: (UnicodeScalar) -> Bool) -> Text
 {
     return x.filter(keep: keep)
+}
+
+public func ∾(_ x: Text, _ y: Text) -> Text
+{
+    return x.append(y)
 }
