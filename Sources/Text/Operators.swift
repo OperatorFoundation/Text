@@ -7,6 +7,7 @@
 
 import Foundation
 
+import Datable
 import Starfish
 
 prefix operator ⟝
@@ -71,7 +72,12 @@ public postfix func ≡(_ x: Text) -> [Text]
 
 public postfix func ⊜(_ x: Text) throws -> Int
 {
-    return Int(string: x.string)
+    guard let int = Int(x.string) else
+    {
+        throw OperatorsError.badConversion
+    }
+
+    return int
 }
 
 public func ⇢<Y>(_ xs: Text, _ f: (Text) throws -> Y) -> [Y]
@@ -89,4 +95,9 @@ public func ⇢<Y>(_ xs: Text, _ f: (Text) throws -> Y) -> [Y]
             return nil
         }
     }
+}
+
+public enum OperatorsError: Error
+{
+    case badConversion
 }
