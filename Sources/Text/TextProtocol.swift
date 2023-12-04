@@ -47,4 +47,7 @@ public protocol TextProtocol:
     func filter(keep: (Unicode.Scalar) -> Bool) -> Text
     func first() throws -> Text
     func last() throws -> Text
+    func fan() -> [Text]
+    func compactMap<Y>(_ f: (Text) -> Y?) -> [Y]
+    func compactMap<Y>(_ f: (Text) throws -> Y) -> [Y]
 }

@@ -14,6 +14,7 @@ prefix operator ⟞
 
 infix operator ∩
 infix operator ∾
+infix operator ⇢
 
 postfix operator ≡
 postfix operator ⊜
@@ -71,4 +72,21 @@ public postfix func ≡(_ x: Text) -> [Text]
 public postfix func ⊜(_ x: Text) throws -> Int
 {
     return Int(string: x.string)
+}
+
+public func ⇢<Y>(_ xs: Text, _ f: (Text) throws -> Y) -> [Y]
+{
+    return xs.compactMap
+    {
+        x in
+
+        do
+        {
+            return try f(x)
+        }
+        catch
+        {
+            return nil
+        }
+    }
 }

@@ -474,6 +474,52 @@ extension Text
     }
 }
 
+// CompactMap
+extension Text
+{
+    public func fan() -> [Text]
+    {
+        var results: [Text] = []
+
+        for index in 0..<self.count()
+        {
+            do
+            {
+                let result = try self.substring(index, index+1)
+                results.append(result)
+            }
+            catch
+            {
+                continue
+            }
+        }
+
+        return results
+    }
+
+    public func compactMap<Y>(_ f: (Text) -> Y?) -> [Y]
+    {
+        return self.fan().compactMap(f)
+    }
+
+    public func compactMap<Y>(_ f: (Text) throws -> Y) -> [Y]
+    {
+        return self.fan().compactMap
+        {
+            (text: Text) -> Y? in
+
+            do
+            {
+                return try f(text)
+            }
+            catch
+            {
+                return nil
+            }
+        }
+    }
+}
+
 public enum TextError: Error
 {
     case badIndex(Int)

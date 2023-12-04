@@ -488,6 +488,25 @@ extension MutableText
     }
 }
 
+// CompactMap
+extension MutableText
+{
+    public func fan() -> [Text]
+    {
+        return self.text.fan()
+    }
+
+    public func compactMap<Y>(_ f: (Text) -> Y?) -> [Y]
+    {
+        return self.text.compactMap(f)
+    }
+
+    public func compactMap<Y>(_ f: (Text) throws -> Y) -> [Y]
+    {
+        return self.text.compactMap(f)
+    }
+}
+
 public enum MutableTextError: Error
 {
     case badIndex(Int)
