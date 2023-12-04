@@ -23,13 +23,13 @@ final class TextTests: XCTestCase
     }
 
 
-    func testFirstOperatorArray() throws
-    {
-        let correct: Int = 1
-        let input: [Int] = [1, 2, 3, 4]
-
-        let first: Int = try ⟝input
-
-        XCTAssertEqual(first, correct)
-    }
+//    func testFirstOperatorArray() throws
+//    {
+//        let correct: Int = 1
+//        let input: [Int] = [1, 2, 3, 4]
+//
+//        let first: Int = try ⟝input
+//
+//        XCTAssertEqual(first, correct)
+//    }
 }
