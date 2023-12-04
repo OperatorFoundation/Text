@@ -11,10 +11,12 @@ import Starfish
 
 prefix operator ⟝
 prefix operator ⟞
-postfix operator ≡
 
 infix operator ∩
 infix operator ∾
+
+postfix operator ≡
+postfix operator ⊜
 
 public func ℤ(_ scalar: UnicodeScalar) -> Bool
 {
@@ -44,4 +46,9 @@ public func ∾(_ x: Text, _ y: Text) -> Text
 public postfix func ≡(_ x: Text) -> [Text]
 {
     return x.lines()
+}
+
+public postfix func ⊜(_ x: Text) throws -> Int
+{
+    return Int(string: x.string)
 }
