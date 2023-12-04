@@ -33,6 +33,26 @@ public prefix func ⟞(_ text: Text) throws -> Text
     return try text.last()
 }
 
+public prefix func ⟝<E>(_ xs: [E]) throws -> E
+{
+    guard let result = xs.first else
+    {
+        throw TextError.textTooShort
+    }
+
+    return result
+}
+
+public prefix func ⟞<E>(_ xs: [E]) throws -> E
+{
+    guard let result = xs.first else
+    {
+        throw TextError.textTooShort
+    }
+
+    return result
+}
+
 public func ∩(_ x: Text, _ keep: (UnicodeScalar) -> Bool) -> Text
 {
     return x.filter(keep: keep)
