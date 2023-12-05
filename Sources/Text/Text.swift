@@ -520,6 +520,15 @@ extension Text
     }
 }
 
+// Reverse
+extension Text
+{
+    public func reverse() -> Text
+    {
+        return Text(fromUTF8String: String(self.string.reversed()))
+    }
+}
+
 public enum TextError: Error
 {
     case badIndex(Int)

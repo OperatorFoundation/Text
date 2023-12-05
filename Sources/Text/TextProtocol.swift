@@ -50,4 +50,5 @@ public protocol TextProtocol:
     func fan() -> [Text]
     func compactMap<Y>(_ f: (Text) -> Y?) -> [Y]
     func compactMap<Y>(_ f: (Text) throws -> Y) -> [Y]
+    func reverse() -> Text
 }

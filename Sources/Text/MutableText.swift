@@ -507,6 +507,20 @@ extension MutableText
     }
 }
 
+// Reverse
+extension MutableText
+{
+    public func reverse() -> Text
+    {
+        return self.text.reverse()
+    }
+
+    public func becomeReverse()
+    {
+        self.text = self.text.reverse()
+    }
+}
+
 public enum MutableTextError: Error
 {
     case badIndex(Int)

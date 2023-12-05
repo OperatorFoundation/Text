@@ -19,6 +19,7 @@ infix operator ⇢
 
 postfix operator ≡
 postfix operator ⊜
+postfix operator ↩
 
 public func ℤ(_ scalar: UnicodeScalar) -> Bool
 {
@@ -95,6 +96,11 @@ public func ⇢<Y>(_ xs: Text, _ f: (Text) throws -> Y) -> [Y]
             return nil
         }
     }
+}
+
+public postfix func ↩(_ x: Text) -> Text
+{
+    return x.reverse()
 }
 
 public enum OperatorsError: Error
