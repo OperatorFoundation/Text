@@ -12,6 +12,7 @@ import Starfish
 
 prefix operator ⟝
 prefix operator ⟞
+prefix operator ⊩
 
 infix operator ∩
 infix operator ∾
@@ -34,6 +35,18 @@ public prefix func ⟝(_ text: Text) throws -> Text
 public prefix func ⟞(_ text: Text) throws -> Text
 {
     return try text.last()
+}
+
+public prefix func ⊩<E>(_ xs: [E]) throws -> (E, [E])
+{
+    guard let first = xs.first else
+    {
+        throw OperatorsError.notEnoughElements
+    }
+
+    let rest = xs.dropFirst()
+
+    return (first, [E](rest))
 }
 
 //public prefix func ⟝<E>(_ xs: [E]) throws -> E
@@ -106,4 +119,5 @@ public postfix func ↩(_ x: Text) -> Text
 public enum OperatorsError: Error
 {
     case badConversion
+    case notEnoughElements
 }
