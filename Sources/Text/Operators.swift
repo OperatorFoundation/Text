@@ -111,6 +111,23 @@ public func ⇢<Y>(_ xs: Text, _ f: (Text) throws -> Y) -> [Y]
     }
 }
 
+public func ⇢<X,Y>(_ xs: [X], _ f: (X) throws -> Y) -> [Y]
+{
+    return xs.compactMap
+    {
+        x in
+
+        do
+        {
+            return try f(x)
+        }
+        catch
+        {
+            return nil
+        }
+    }
+}
+
 public postfix func ↩(_ x: Text) -> Text
 {
     return x.reverse()
