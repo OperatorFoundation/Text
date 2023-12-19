@@ -17,6 +17,8 @@ public protocol TextProtocol:
     Hashable,
     MaybeDatable
 {
+    static func join(_ xs: [Text], _ seperator: Text?) -> Text
+
     func toUTF8String() -> String
     func toUTF8Data() -> Data
     func toHex() -> Text

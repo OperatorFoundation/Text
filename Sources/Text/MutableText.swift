@@ -12,6 +12,23 @@ import SwiftHexTools
 
 public final class MutableText: TextProtocol
 {
+    static public func join(_ xs: [Text], _ separator: Text? = nil) -> Text
+    {
+        let strings = xs.map { $0.string }
+
+        let resultString: String
+        if let separator
+        {
+            resultString = strings.joined(separator: separator.string)
+        }
+        else
+        {
+            resultString = strings.joined()
+        }
+
+        return Text(fromUTF8String: resultString)
+    }
+
     public var text: Text
 
     public init()
