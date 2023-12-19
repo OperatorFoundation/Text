@@ -41,6 +41,30 @@ extension Text: ExpressibleByStringLiteral
     }
 }
 
+extension Text: CustomStringConvertible
+{
+    public var description: String
+    {
+        return self.string
+    }
+}
+
+extension Text: LosslessStringConvertible
+{
+    public init(_ description: String)
+    {
+        self.init(fromUTF8String: description)
+    }
+}
+
+extension Text: CustomDebugStringConvertible
+{
+    public var debugDescription: String
+    {
+        return self.string
+    }
+}
+
 extension Text
 {
     static public func numeric(_ scalar: UnicodeScalar) -> Bool
