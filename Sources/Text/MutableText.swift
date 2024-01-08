@@ -489,7 +489,7 @@ extension MutableText
         return try self.text.first()
     }
 
-    public func becomFirst() throws
+    public func becomeFirst() throws
     {
         self.text = try self.text.first()
     }
