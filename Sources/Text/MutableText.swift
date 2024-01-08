@@ -130,7 +130,7 @@ extension MutableText
 // Become
 extension MutableText
 {
-    public func become(text: Text)
+    public func become(_ text: Text)
     {
         self.text = text
     }
