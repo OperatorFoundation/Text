@@ -538,6 +538,19 @@ extension MutableText
     }
 }
 
+extension MutableText
+{
+    public func asText() -> Text
+    {
+        return self.text
+    }
+
+    public func becomeText(_ newText: Text)
+    {
+        self.text = newText
+    }
+}
+
 public enum MutableTextError: Error
 {
     case badIndex(Int)
