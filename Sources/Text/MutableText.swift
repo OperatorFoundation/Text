@@ -461,9 +461,9 @@ extension MutableText
 // Lines
 extension MutableText
 {
-    public func lines(separator: Text? = nil) -> [Text]
+    public func lines(_ separator: Text? = nil) -> [Text]
     {
-        return self.text.lines(separator: separator)
+        return self.text.lines(separator)
     }
 }
 
@@ -535,19 +535,6 @@ extension MutableText
     public func becomeReverse()
     {
         self.text = self.text.reverse()
-    }
-}
-
-extension MutableText
-{
-    public func asText() -> Text
-    {
-        return self.text
-    }
-
-    public func becomeText(_ newText: Text)
-    {
-        self.text = newText
     }
 }
 

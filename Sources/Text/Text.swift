@@ -419,7 +419,7 @@ extension Text
 // Lines
 extension Text
 {
-    public func lines(separator: Text? = nil) -> [Text]
+    public func lines(_ separator: Text? = nil) -> [Text]
     {
         if let separator
         {
@@ -433,7 +433,7 @@ extension Text
 
         if self.string.contains("\r\n")
         {
-            return self.lines(separator: "\r\n").map
+            return self.lines("\r\n").map
             {
                 text in
 
@@ -443,7 +443,7 @@ extension Text
 
         if self.string.contains("\n\r")
         {
-            return self.lines(separator: "\n\r").map
+            return self.lines("\n\r").map
             {
                 text in
 
@@ -453,7 +453,7 @@ extension Text
 
         if self.string.contains("\r")
         {
-            return self.lines(separator: "\r").map
+            return self.lines("\r").map
             {
                 text in
 
@@ -463,7 +463,7 @@ extension Text
 
         if self.string.contains("\n")
         {
-            return self.lines(separator: "\n").map
+            return self.lines("\n").map
             {
                 text in
 
