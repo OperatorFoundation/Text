@@ -9,15 +9,8 @@ import Foundation
 
 public extension URL
 {
-    func appending(component: Text, isDirectory: Bool) -> URL
+    func appending(component: Text) -> URL
     {
-        if isDirectory
-        {
-            return self.appending(component: component.toUTF8String(), directoryHint: .isDirectory)
-        }
-        else
-        {
-            return self.appending(component: component.toUTF8String(), directoryHint: .notDirectory)
-        }
+        return self.appending(component: component.toUTF8String())
     }
 }
