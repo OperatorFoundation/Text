@@ -14,6 +14,9 @@ let package = Package(
         .library(
             name: "Text",
             targets: ["Text"]),
+        .library(
+            name: "TextSwiftUI",
+            targets: ["Text"]),
     ],
     dependencies: [
         .package(url: "https://github.com/OperatorFoundation/Datable", branch: "main"),
@@ -24,6 +27,13 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "Text",
+            dependencies: [
+                "Datable",
+                "SwiftHexTools",
+            ]
+        ),
+        .target(
+            name: "TextSwiftUI",
             dependencies: [
                 "Datable",
                 "SwiftHexTools",
