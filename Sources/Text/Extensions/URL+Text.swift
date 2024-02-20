@@ -11,6 +11,6 @@ public extension URL
 {
     func appending(component: Text) -> URL
     {
-        return self.appending(component: component.toUTF8String())
+        return self.appendingPathComponent(component.toUTF8String())
     }
 }
