@@ -24,7 +24,6 @@ public protocol TextProtocol:
     func toHex() -> Text
     func toBase64() -> Text
     func substring(_ startInclusive: Int, _ endExclusive: Int) throws -> Text
-    func substringRegex(_ regex: Regex<AnyRegexOutput>) throws -> Text
     func indexOf(_ text: Text) throws -> Int
     func lastIndexOf(_ text: Text) throws -> Int
     func split(_ separator: Text) -> [Text]
@@ -37,7 +36,6 @@ public protocol TextProtocol:
     func append(_ suffix: Text) -> Text
     func containsSubstring(_ subtext: Text) -> Bool
     func startsWith(_ subtext: Text) -> Bool
-    func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
     func count() -> Int
     func isEmpty() -> Bool
     func toCodableFromJSON<T>() throws -> T where T: Codable
@@ -53,4 +51,10 @@ public protocol TextProtocol:
     func compactMap<Y>(_ f: (Text) -> Y?) -> [Y]
     func compactMap<Y>(_ f: (Text) throws -> Y) -> [Y]
     func reverse() -> Text
+
+    @available(iOS 16, macOS 14, *)
+    func substringRegex(_ regex: Regex<AnyRegexOutput>) throws -> Text
+
+    @available(iOS 16, macOS 14, *)
+    func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
 }

@@ -208,6 +208,7 @@ extension MutableText
         return try self.text.substring(startInclusive, endExclusive)
     }
 
+    @available(iOS 16, macOS 14, *)
     public func substringRegex(_ regex: Regex<AnyRegexOutput>) throws -> Text
     {
         return try self.text.substringRegex(regex)
@@ -218,6 +219,7 @@ extension MutableText
         self.text = try self.text.substring(startInclusive, endExclusive)
     }
 
+    @available(iOS 16, macOS 14, *)
     public func becomeSubstringRegex(_ regex: Regex<AnyRegexOutput>) throws
     {
         self.text = try self.text.substringRegex(regex)
@@ -375,6 +377,7 @@ extension MutableText
         return self.text.startsWith(subtext)
     }
 
+    @available(iOS 16, macOS 14, *)
     public func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
     {
         return self.text.containsRegex(regex)

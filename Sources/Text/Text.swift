@@ -203,6 +203,7 @@ extension Text
         return Text(fromUTF8String: resultString)
     }
 
+    @available(iOS 16, macOS 14, *)
     public func substringRegex(_ regex: Regex<AnyRegexOutput>) throws -> Text
     {
         let ranges = self.string.ranges(of: regex)
@@ -352,6 +353,7 @@ extension Text
         }
     }
 
+    @available(iOS 16, macOS 14, *)
     public func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
     {
         let ranges = self.string.ranges(of: regex)
