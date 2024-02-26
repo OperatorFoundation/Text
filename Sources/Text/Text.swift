@@ -220,6 +220,7 @@ extension Text
 // IndexOf
 extension Text
 {
+    @available(iOS 16, macOS 14, *)
     public func indexOf(_ text: Text) throws -> Int
     {
         guard let range = self.string.firstRange(of: text.string) else
@@ -231,6 +232,7 @@ extension Text
         return self.string.distance(from: self.string.startIndex, to: index)
     }
 
+    @available(iOS 16, macOS 14, *)
     public func lastIndexOf(_ text: Text) throws -> Int
     {
         let ranges = self.string.ranges(of: text.string)
@@ -261,12 +263,14 @@ extension Text
         }
     }
 
+    @available(iOS 16, macOS 14, *)
     public func splitOn(_ value: Text) throws -> (Text, Text)
     {
         let index = try self.indexOf(value)
         return try self.splitAt(index, value.count())
     }
 
+    @available(iOS 16, macOS 14, *)
     public func splitOnLast(_ value: Text) throws -> (Text, Text)
     {
         let index = try self.lastIndexOf(value)

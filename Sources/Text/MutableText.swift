@@ -229,11 +229,13 @@ extension MutableText
 // IndexOf
 extension MutableText
 {
+    @available(iOS 16, macOS 14, *)
     public func indexOf(_ text: Text) throws -> Int
     {
         return try self.text.indexOf(text)
     }
 
+    @available(iOS 16, macOS 14, *)
     public func lastIndexOf(_ text: Text) throws -> Int
     {
         return try self.text.lastIndexOf(text)
@@ -248,11 +250,13 @@ extension MutableText
         return self.text.split(separator)
     }
 
+    @available(iOS 16, macOS 14, *)
     public func splitOn(_ value: Text) throws -> (Text, Text)
     {
         return try self.text.splitOn(value)
     }
 
+    @available(iOS 16, macOS 14, *)
     public func splitOnLast(_ value: Text) throws -> (Text, Text)
     {
         return try self.text.splitOnLast(value)
@@ -275,24 +279,28 @@ extension MutableText
         self.text = parts[index]
     }
 
+    @available(iOS 16, macOS 14, *)
     public func becomeSplitOnHead(_ value: Text) throws
     {
         let (head, _) = try self.splitOn(value)
         self.text = head
     }
 
+    @available(iOS 16, macOS 14, *)
     public func becomeSplitOnTail(_ value: Text) throws
     {
         let (_, tail) = try self.splitOn(value)
         self.text = tail
     }
 
+    @available(iOS 16, macOS 14, *)
     public func becomeSplitOnLastHead(_ value: Text) throws
     {
         let (head, _) = try self.splitOnLast(value)
         self.text = head
     }
 
+    @available(iOS 16, macOS 14, *)
     public func becomeSplitOnLastTail(_ value: Text) throws
     {
         let (_, tail) = try self.splitOnLast(value)

@@ -24,11 +24,7 @@ public protocol TextProtocol:
     func toHex() -> Text
     func toBase64() -> Text
     func substring(_ startInclusive: Int, _ endExclusive: Int) throws -> Text
-    func indexOf(_ text: Text) throws -> Int
-    func lastIndexOf(_ text: Text) throws -> Int
     func split(_ separator: Text) -> [Text]
-    func splitOn(_ value: Text) throws -> (Text, Text)
-    func splitOnLast(_ value: Text) throws -> (Text, Text)
     func splitAt(_ index: Int, _ length: Int) throws -> (Text, Text)
     func trim() -> Text
     func join(_ parts: [Text]) -> Text
@@ -57,4 +53,16 @@ public protocol TextProtocol:
 
     @available(iOS 16, macOS 14, *)
     func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
+
+    @available(iOS 16, macOS 14, *)
+    func indexOf(_ text: Text) throws -> Int
+    
+    @available(iOS 16, macOS 14, *)
+    func lastIndexOf(_ text: Text) throws -> Int
+
+    @available(iOS 16, macOS 14, *)
+    func splitOn(_ value: Text) throws -> (Text, Text)
+
+    @available(iOS 16, macOS 14, *)
+    func splitOnLast(_ value: Text) throws -> (Text, Text)
 }
