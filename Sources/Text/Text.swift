@@ -280,7 +280,7 @@ extension Text
     public func splitAt(_ index: Int, _ length: Int = 0) throws -> (Text, Text)
     {
         let headIndex = self.string.index(self.string.startIndex, offsetBy: index)
-        guard headIndex >= self.string.startIndex, headIndex < self.string.endIndex else
+        guard headIndex >= self.string.startIndex, headIndex <= self.string.endIndex else
         {
             throw TextError.badIndex(index)
         }
