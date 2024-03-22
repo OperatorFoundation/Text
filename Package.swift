@@ -19,8 +19,8 @@ let package = Package(
             targets: ["Text"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/OperatorFoundation/Datable", branch: "main"),
-        .package(url: "https://github.com/OperatorFoundation/SwiftHexTools", branch: "main"),
+        .package(url: "https://github.com/OperatorFoundation/Datable", from: "4.0.1"),
+        .package(url: "https://github.com/OperatorFoundation/SwiftHexTools", from: "1.2.6"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
