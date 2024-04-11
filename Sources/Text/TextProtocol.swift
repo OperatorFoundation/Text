@@ -33,6 +33,7 @@ public protocol TextProtocol:
     func containsSubstring(_ subtext: Text) -> Bool
     func startsWith(_ subtext: Text) -> Bool
     func endsWith(_ subtext: Text) -> Bool
+    func surroundedBy(_ prefix: Text, _ suffix: Text) -> Bool
     func count() -> Int
     func isEmpty() -> Bool
     func toCodableFromJSON<T>() throws -> T where T: Codable

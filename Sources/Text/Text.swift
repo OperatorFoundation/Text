@@ -372,6 +372,11 @@ extension Text
         }
     }
 
+    public func surroundedBy(_ prefix: Text, _ suffix: Text) -> Bool
+    {
+        return self.startsWith(prefix) && self.endsWith(suffix)
+    }
+
     @available(iOS 16, macOS 14, *)
     public func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
     {

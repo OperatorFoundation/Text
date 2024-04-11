@@ -390,6 +390,11 @@ extension MutableText
         return self.text.endsWith(subtext)
     }
 
+    public func surroundedBy(_ prefix: Text, _ suffix: Text) -> Bool
+    {
+        return self.text.surroundedBy(prefix, suffix)
+    }
+
     @available(iOS 16, macOS 14, *)
     public func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
     {
