@@ -400,12 +400,17 @@ extension Text
     }
 }
 
-// Uppercase
+// Uppercase, lowercase
 extension Text
 {
     public func uppercase() -> Text
     {
         return Text(fromUTF8String: self.string.uppercased())
+    }
+
+    public func lowercase() -> Text
+    {
+        return Text(fromUTF8String: self.string.lowercased())
     }
 
     public func uppercaseFirstLetter() throws -> Text

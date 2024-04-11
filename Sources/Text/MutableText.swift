@@ -445,12 +445,17 @@ extension MutableText
     }
 }
 
-// Uppercase
+// Uppercase, lowercase
 extension MutableText
 {
     public func uppercase() -> Text
     {
         return self.text.uppercase()
+    }
+
+    public func lowercase() -> Text
+    {
+        return self.text.lowercase()
     }
 
     public func becomeUppercase()

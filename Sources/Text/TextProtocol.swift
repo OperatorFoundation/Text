@@ -38,6 +38,7 @@ public protocol TextProtocol:
     func dropFirst() throws -> Text
     func dropPrefix(_ text: Text) throws -> Text
     func uppercase() -> Text
+    func lowercase() -> Text
     func uppercaseFirstLetter() throws -> Text
     func lines(_ separator: Text?) -> [Text]
     func filter(keep: (Unicode.Scalar) -> Bool) -> Text
