@@ -328,7 +328,7 @@ extension Text
     }
 }
 
-// Contains, StartsWith
+// Contains, StartsWith, EndsWith
 extension Text
 {
     public func containsSubstring(_ subtext: Text) -> Bool
@@ -347,6 +347,24 @@ extension Text
         {
             let prefix = try self.substring(0, subtext.count())
             return prefix == subtext
+        }
+        catch
+        {
+            return false
+        }
+    }
+
+    public func endsWith(_ subtext: Text) -> Bool
+    {
+        guard subtext.count() <= self.count() else
+        {
+            return false
+        }
+
+        do
+        {
+            let suffix = try self.substring(subtext.count(), self.count())
+            return suffix == subtext
         }
         catch
         {
@@ -384,6 +402,11 @@ extension Text
         return try self.substring(1, self.count())
     }
 
+    public func dropLast() throws -> Text
+    {
+        return try self.substring(0, self.count() - 1)
+    }
+
     public func dropPrefix(_ text: Text) throws -> Text
     {
         guard self.startsWith(text) else
@@ -394,6 +417,18 @@ extension Text
         let index = text.count()
         let (_, tail) = try self.splitAt(index)
         return tail
+    }
+
+    public func dropSuffix(_ text: Text) throws -> Text
+    {
+        guard self.endsWith(text) else
+        {
+            return self
+        }
+
+        let index = self.count() - text.count()
+        let (head, _) = try self.splitAt(index)
+        return head
     }
 }
 

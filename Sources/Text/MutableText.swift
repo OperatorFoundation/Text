@@ -385,6 +385,11 @@ extension MutableText
         return self.text.startsWith(subtext)
     }
 
+    public func endsWith(_ subtext: Text) -> Bool
+    {
+        return self.text.endsWith(subtext)
+    }
+
     @available(iOS 16, macOS 14, *)
     public func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
     {
@@ -429,9 +434,19 @@ extension MutableText
         return try self.text.dropFirst()
     }
 
+    public func dropLast() throws -> Text
+    {
+        return try self.text.dropLast()
+    }
+
     public func becomeDropFirst() throws
     {
         self.text = try self.text.dropFirst()
+    }
+
+    public func becomeDropLast() throws
+    {
+        self.text = try self.text.dropLast()
     }
 
     public func dropPrefix(_ text: Text) throws -> Text
@@ -442,6 +457,16 @@ extension MutableText
     public func becomeDropPrefix(_ text: Text) throws
     {
         self.text = try self.text.dropPrefix(text)
+    }
+
+    public func dropSuffix(_ text: Text) throws -> Text
+    {
+        return try self.text.dropSuffix(text)
+    }
+
+    public func becomeDropSuffix(_ text: Text) throws
+    {
+        self.text = try self.text.dropSuffix(text)
     }
 }
 
