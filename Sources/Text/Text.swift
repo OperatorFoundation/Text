@@ -280,16 +280,13 @@ extension Text
     public func splitAt(_ index: Int, _ length: Int = 0) throws -> (Text, Text)
     {
         let headIndex = self.string.index(self.string.startIndex, offsetBy: index)
-        guard headIndex >= self.string.startIndex, headIndex < self.string.endIndex else
+        guard headIndex >= self.string.startIndex, headIndex <= self.string.endIndex else
         {
             throw TextError.badIndex(index)
         }
 
-        let afterHeadIndex = self.string.index(after: headIndex)
-        let tailIndex = self.string.index(afterHeadIndex, offsetBy: length - 1)
-
         let head = String(self.string[self.string.startIndex..<headIndex])
-        let tail = String(self.string[tailIndex..<self.string.endIndex])
+        let tail = String(self.string[headIndex..<self.string.endIndex])
 
         return (Text(fromUTF8String: head), Text(fromUTF8String: tail))
     }
