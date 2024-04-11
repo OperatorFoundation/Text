@@ -468,6 +468,16 @@ extension MutableText
     {
         self.text = try self.text.dropSuffix(text)
     }
+
+    public func dropSurrounding(_ prefix: Text, _ suffix: Text) throws -> Text
+    {
+        return try self.text.dropSurrounding(prefix, suffix)
+    }
+
+    public func becomeDropSurrounding(_ prefix: Text, _ suffix: Text) throws
+    {
+        self.text = try self.text.dropSurrounding(prefix, suffix)
+    }
 }
 
 // Uppercase, lowercase

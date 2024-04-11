@@ -40,6 +40,7 @@ public protocol TextProtocol:
     func dropLast() throws -> Text
     func dropPrefix(_ text: Text) throws -> Text
     func dropSuffix(_ text: Text) throws -> Text
+    func dropSurrounding(_ prefix: Text, _ suffix: Text) throws -> Text
     func uppercase() -> Text
     func lowercase() -> Text
     func uppercaseFirstLetter() throws -> Text

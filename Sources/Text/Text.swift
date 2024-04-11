@@ -430,6 +430,11 @@ extension Text
         let (head, _) = try self.splitAt(index)
         return head
     }
+
+    public func dropSurrounding(_ prefix: Text, _ suffix: Text) throws -> Text
+    {
+        return try self.dropPrefix(prefix).dropSuffix(suffix)
+    }
 }
 
 // Uppercase, lowercase
