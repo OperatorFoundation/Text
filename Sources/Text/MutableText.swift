@@ -134,6 +134,16 @@ extension MutableText
     {
         self.text = text
     }
+
+    public func beome(_ function: () -> Text)
+    {
+        self.text = function()
+    }
+
+    public func become(_ function: (Text) -> Text)
+    {
+        self.text = function(self.text)
+    }
 }
 
 // Hex conversion
