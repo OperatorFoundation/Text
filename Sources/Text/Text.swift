@@ -493,7 +493,7 @@ extension Text
 
         if self.string.contains("\r\n")
         {
-            return self.lines("\r\n").map
+            return self.lines("\r\n", trim: trim).map
             {
                 text in
 
@@ -504,12 +504,13 @@ extension Text
                 else
                 {
                     return text
-                }            }
+                }
+            }
         }
 
         if self.string.contains("\n\r")
         {
-            return self.lines("\n\r").map
+            return self.lines("\n\r", trim: trim).map
             {
                 text in
 
@@ -520,12 +521,13 @@ extension Text
                 else
                 {
                     return text
-                }            }
+                }
+            }
         }
 
         if self.string.contains("\r")
         {
-            return self.lines("\r").map
+            return self.lines("\r", trim: trim).map
             {
                 text in
 
@@ -536,12 +538,13 @@ extension Text
                 else
                 {
                     return text
-                }            }
+                }
+            }
         }
 
         if self.string.contains("\n")
         {
-            return self.lines("\n").map
+            return self.lines("\n", trim: trim).map
             {
                 text in
 
@@ -552,7 +555,8 @@ extension Text
                 else
                 {
                     return text
-                }            }
+                }
+            }
         }
 
         return [self]
