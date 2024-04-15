@@ -472,7 +472,7 @@ extension Text
 // Lines
 extension Text
 {
-    public func lines(_ separator: Text? = nil, _ trim: Bool = true) -> [Text]
+    public func lines(_ separator: Text? = nil, trim: Bool = true) -> [Text]
     {
         if let separator
         {
