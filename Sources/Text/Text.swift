@@ -363,7 +363,7 @@ extension Text
 
         do
         {
-            let suffix = try self.substring(subtext.count(), self.count())
+            let suffix = try self.substring(self.count() - subtext.count(), self.count())
             return suffix == subtext
         }
         catch
