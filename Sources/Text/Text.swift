@@ -472,7 +472,7 @@ extension Text
 // Lines
 extension Text
 {
-    public func lines(_ separator: Text? = nil) -> [Text]
+    public func lines(_ separator: Text? = nil, _ trim: Bool = true) -> [Text]
     {
         if let separator
         {
@@ -480,7 +480,14 @@ extension Text
             {
                 text in
 
-                return text.trim()
+                if trim
+                {
+                    return text.trim()
+                }
+                else
+                {
+                    return text
+                }
             }
         }
 
@@ -490,8 +497,14 @@ extension Text
             {
                 text in
 
-                return text.trim()
-            }
+                if trim
+                {
+                    return text.trim()
+                }
+                else
+                {
+                    return text
+                }            }
         }
 
         if self.string.contains("\n\r")
@@ -500,8 +513,14 @@ extension Text
             {
                 text in
 
-                return text.trim()
-            }
+                if trim
+                {
+                    return text.trim()
+                }
+                else
+                {
+                    return text
+                }            }
         }
 
         if self.string.contains("\r")
@@ -510,8 +529,14 @@ extension Text
             {
                 text in
 
-                return text.trim()
-            }
+                if trim
+                {
+                    return text.trim()
+                }
+                else
+                {
+                    return text
+                }            }
         }
 
         if self.string.contains("\n")
@@ -520,8 +545,14 @@ extension Text
             {
                 text in
 
-                return text.trim()
-            }
+                if trim
+                {
+                    return text.trim()
+                }
+                else
+                {
+                    return text
+                }            }
         }
 
         return [self]

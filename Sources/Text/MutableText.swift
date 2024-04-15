@@ -527,9 +527,9 @@ extension MutableText
 // Lines
 extension MutableText
 {
-    public func lines(_ separator: Text? = nil) -> [Text]
+    public func lines(_ separator: Text? = nil, _ trim: Bool = false) -> [Text]
     {
-        return self.text.lines(separator)
+        return self.text.lines(separator, trim)
     }
 }
 
