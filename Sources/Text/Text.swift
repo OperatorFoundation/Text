@@ -10,7 +10,7 @@ import Foundation
 import Datable
 import SwiftHexTools
 
-public struct Text: TextProtocol
+public struct Text: TextProtocol, Codable
 {
     static public func join(_ xs: [Text], _ separator: Text? = nil) -> Text
     {
