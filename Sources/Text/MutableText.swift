@@ -524,12 +524,17 @@ extension MutableText
     }
 }
 
-// Lines
+// Lines, Tokens
 extension MutableText
 {
     public func lines(_ separator: Text? = nil, trim: Bool = false) -> [Text]
     {
         return self.text.lines(separator, trim: trim)
+    }
+
+    public func tokens(_ separator: Text? = nil) -> [Text]
+    {
+        return self.text.tokens(separator)
     }
 }
 

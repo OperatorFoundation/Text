@@ -469,7 +469,7 @@ extension Text
     }
 }
 
-// Lines
+// Lines, Tokens
 extension Text
 {
     public func lines(_ separator: Text? = nil, trim: Bool = true) -> [Text]
@@ -560,6 +560,65 @@ extension Text
         }
 
         return [self]
+    }
+
+    public func tokens(_ separators: Text? = nil) -> [Text]
+    {
+        guard let separators else
+        {
+            return self.tokens(" \t\r\n")
+        }
+
+        var results: [Text] = []
+        var current: Text = ""
+        var started: Bool = false
+        var inWord: Bool = false
+
+        for character in self.fan()
+        {
+            if started
+            {
+                if inWord
+                {
+                    for separator in separators.fan()
+                    {
+                        if character == separator
+                        {
+                            inWord = false
+                            results.append(current)
+                            current = ""
+                            break
+                        }
+                    }
+                }
+                else
+                {
+                    for separator in separators.fan()
+                    {
+                        if character == separator
+                        {
+                            inWord = true
+                            current = current.append(character)
+                        }
+                    }
+                }
+            }
+            else // First character of Text
+            {
+                started = true
+
+                inWord = false
+                for separator in separators.fan()
+                {
+                    if character == separator
+                    {
+                        inWord = true
+                    }
+                }
+            }
+        }
+
+        return results
     }
 }
 

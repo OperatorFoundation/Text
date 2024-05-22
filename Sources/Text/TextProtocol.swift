@@ -46,6 +46,7 @@ public protocol TextProtocol:
     func lowercase() -> Text
     func uppercaseFirstLetter() throws -> Text
     func lines(_ separator: Text?, trim: Bool) -> [Text]
+    func tokens(_ separators: Text?) -> [Text]
     func filter(keep: (Unicode.Scalar) -> Bool) -> Text
     func first() throws -> Text
     func last() throws -> Text
