@@ -32,14 +32,21 @@ public protocol TextProtocol:
     func append(_ suffix: Text) -> Text
     func containsSubstring(_ subtext: Text) -> Bool
     func startsWith(_ subtext: Text) -> Bool
+    func endsWith(_ subtext: Text) -> Bool
+    func surroundedBy(_ prefix: Text, _ suffix: Text) -> Bool
     func count() -> Int
     func isEmpty() -> Bool
     func toCodableFromJSON<T>() throws -> T where T: Codable
     func dropFirst() throws -> Text
+    func dropLast() throws -> Text
     func dropPrefix(_ text: Text) throws -> Text
+    func dropSuffix(_ text: Text) throws -> Text
+    func dropSurrounding(_ prefix: Text, _ suffix: Text) throws -> Text
     func uppercase() -> Text
+    func lowercase() -> Text
     func uppercaseFirstLetter() throws -> Text
-    func lines(_ separator: Text?) -> [Text]
+    func lines(_ separator: Text?, trim: Bool) -> [Text]
+    func tokens(_ separators: Text?) -> [Text]
     func filter(keep: (Unicode.Scalar) -> Bool) -> Text
     func first() throws -> Text
     func last() throws -> Text

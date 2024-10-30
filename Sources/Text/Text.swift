@@ -10,7 +10,7 @@ import Foundation
 import Datable
 import SwiftHexTools
 
-public struct Text: TextProtocol
+public struct Text: TextProtocol, Codable
 {
     static public func join(_ xs: [Text], _ separator: Text? = nil) -> Text
     {
@@ -328,7 +328,7 @@ extension Text
     }
 }
 
-// Contains, StartsWith
+// Contains, StartsWith, EndsWith
 extension Text
 {
     public func containsSubstring(_ subtext: Text) -> Bool
@@ -352,6 +352,29 @@ extension Text
         {
             return false
         }
+    }
+
+    public func endsWith(_ subtext: Text) -> Bool
+    {
+        guard subtext.count() <= self.count() else
+        {
+            return false
+        }
+
+        do
+        {
+            let suffix = try self.substring(self.count() - subtext.count(), self.count())
+            return suffix == subtext
+        }
+        catch
+        {
+            return false
+        }
+    }
+
+    public func surroundedBy(_ prefix: Text, _ suffix: Text) -> Bool
+    {
+        return self.startsWith(prefix) && self.endsWith(suffix)
     }
 
     @available(iOS 16, macOS 14, *)
@@ -384,6 +407,11 @@ extension Text
         return try self.substring(1, self.count())
     }
 
+    public func dropLast() throws -> Text
+    {
+        return try self.substring(0, self.count() - 1)
+    }
+
     public func dropPrefix(_ text: Text) throws -> Text
     {
         guard self.startsWith(text) else
@@ -395,14 +423,36 @@ extension Text
         let (_, tail) = try self.splitAt(index)
         return tail
     }
+
+    public func dropSuffix(_ text: Text) throws -> Text
+    {
+        guard self.endsWith(text) else
+        {
+            return self
+        }
+
+        let index = self.count() - text.count()
+        let (head, _) = try self.splitAt(index)
+        return head
+    }
+
+    public func dropSurrounding(_ prefix: Text, _ suffix: Text) throws -> Text
+    {
+        return try self.dropPrefix(prefix).dropSuffix(suffix)
+    }
 }
 
-// Uppercase
+// Uppercase, lowercase
 extension Text
 {
     public func uppercase() -> Text
     {
         return Text(fromUTF8String: self.string.uppercased())
+    }
+
+    public func lowercase() -> Text
+    {
+        return Text(fromUTF8String: self.string.lowercased())
     }
 
     public func uppercaseFirstLetter() throws -> Text
@@ -419,10 +469,10 @@ extension Text
     }
 }
 
-// Lines
+// Lines, Tokens
 extension Text
 {
-    public func lines(_ separator: Text? = nil) -> [Text]
+    public func lines(_ separator: Text? = nil, trim: Bool = true) -> [Text]
     {
         if let separator
         {
@@ -430,51 +480,145 @@ extension Text
             {
                 text in
 
-                return text.trim()
+                if trim
+                {
+                    return text.trim()
+                }
+                else
+                {
+                    return text
+                }
             }
         }
 
         if self.string.contains("\r\n")
         {
-            return self.lines("\r\n").map
+            return self.lines("\r\n", trim: trim).map
             {
                 text in
 
-                return text.trim()
+                if trim
+                {
+                    return text.trim()
+                }
+                else
+                {
+                    return text
+                }
             }
         }
 
         if self.string.contains("\n\r")
         {
-            return self.lines("\n\r").map
+            return self.lines("\n\r", trim: trim).map
             {
                 text in
 
-                return text.trim()
+                if trim
+                {
+                    return text.trim()
+                }
+                else
+                {
+                    return text
+                }
             }
         }
 
         if self.string.contains("\r")
         {
-            return self.lines("\r").map
+            return self.lines("\r", trim: trim).map
             {
                 text in
 
-                return text.trim()
+                if trim
+                {
+                    return text.trim()
+                }
+                else
+                {
+                    return text
+                }
             }
         }
 
         if self.string.contains("\n")
         {
-            return self.lines("\n").map
+            return self.lines("\n", trim: trim).map
             {
                 text in
 
-                return text.trim()
+                if trim
+                {
+                    return text.trim()
+                }
+                else
+                {
+                    return text
+                }
             }
         }
 
         return [self]
+    }
+
+    public func tokens(_ separators: Text? = nil) -> [Text]
+    {
+        guard let separators else
+        {
+            return self.tokens(" \t\r\n")
+        }
+
+        var results: [Text] = []
+        var current: Text = ""
+        var started: Bool = false
+        var inWord: Bool = false
+
+        for character in self.fan()
+        {
+            if started
+            {
+                if inWord
+                {
+                    for separator in separators.fan()
+                    {
+                        if character == separator
+                        {
+                            inWord = false
+                            results.append(current)
+                            current = ""
+                            break
+                        }
+                    }
+                }
+                else
+                {
+                    for separator in separators.fan()
+                    {
+                        if character == separator
+                        {
+                            inWord = true
+                            current = current.append(character)
+                        }
+                    }
+                }
+            }
+            else // First character of Text
+            {
+                started = true
+
+                inWord = false
+                for separator in separators.fan()
+                {
+                    if character == separator
+                    {
+                        inWord = true
+                    }
+                }
+            }
+        }
+
+        return results
     }
 }
 

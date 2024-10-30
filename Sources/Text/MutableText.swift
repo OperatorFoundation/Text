@@ -134,6 +134,16 @@ extension MutableText
     {
         self.text = text
     }
+
+    public func beome(_ function: () -> Text)
+    {
+        self.text = function()
+    }
+
+    public func become(_ function: (Text) -> Text)
+    {
+        self.text = function(self.text)
+    }
 }
 
 // Hex conversion
@@ -385,6 +395,16 @@ extension MutableText
         return self.text.startsWith(subtext)
     }
 
+    public func endsWith(_ subtext: Text) -> Bool
+    {
+        return self.text.endsWith(subtext)
+    }
+
+    public func surroundedBy(_ prefix: Text, _ suffix: Text) -> Bool
+    {
+        return self.text.surroundedBy(prefix, suffix)
+    }
+
     @available(iOS 16, macOS 14, *)
     public func containsRegex(_ regex: Regex<AnyRegexOutput>) -> Bool
     {
@@ -429,9 +449,19 @@ extension MutableText
         return try self.text.dropFirst()
     }
 
+    public func dropLast() throws -> Text
+    {
+        return try self.text.dropLast()
+    }
+
     public func becomeDropFirst() throws
     {
         self.text = try self.text.dropFirst()
+    }
+
+    public func becomeDropLast() throws
+    {
+        self.text = try self.text.dropLast()
     }
 
     public func dropPrefix(_ text: Text) throws -> Text
@@ -443,14 +473,39 @@ extension MutableText
     {
         self.text = try self.text.dropPrefix(text)
     }
+
+    public func dropSuffix(_ text: Text) throws -> Text
+    {
+        return try self.text.dropSuffix(text)
+    }
+
+    public func becomeDropSuffix(_ text: Text) throws
+    {
+        self.text = try self.text.dropSuffix(text)
+    }
+
+    public func dropSurrounding(_ prefix: Text, _ suffix: Text) throws -> Text
+    {
+        return try self.text.dropSurrounding(prefix, suffix)
+    }
+
+    public func becomeDropSurrounding(_ prefix: Text, _ suffix: Text) throws
+    {
+        self.text = try self.text.dropSurrounding(prefix, suffix)
+    }
 }
 
-// Uppercase
+// Uppercase, lowercase
 extension MutableText
 {
     public func uppercase() -> Text
     {
         return self.text.uppercase()
+    }
+
+    public func lowercase() -> Text
+    {
+        return self.text.lowercase()
     }
 
     public func becomeUppercase()
@@ -469,12 +524,17 @@ extension MutableText
     }
 }
 
-// Lines
+// Lines, Tokens
 extension MutableText
 {
-    public func lines(_ separator: Text? = nil) -> [Text]
+    public func lines(_ separator: Text? = nil, trim: Bool = false) -> [Text]
     {
-        return self.text.lines(separator)
+        return self.text.lines(separator, trim: trim)
+    }
+
+    public func tokens(_ separator: Text? = nil) -> [Text]
+    {
+        return self.text.tokens(separator)
     }
 }
 
